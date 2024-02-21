@@ -14,7 +14,7 @@ import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import accounting from 'accounting';
 
-export default function Product() {
+export default function Product({ product: {id, name, brand, image, price, description} }) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -31,7 +31,7 @@ export default function Product() {
             variant='h5'
             color='textSecondary'
           >
-            {accounting.formatMoney(50)}
+            {accounting.formatMoney(price)}
           </Typography>
         }
         title='MacBook Pro'
@@ -39,14 +39,9 @@ export default function Product() {
       />
       <CardMedia
         className={classes.media}
-        image='https://www.hp.com/wcsstore/hpusstore/Treatment/mdps/Q3FY22_omen17_LT/hero_omen17_3.png'
-        title='MacBook Pro'
+        image={image}
+        title={name}
       />
-      <CardContent>
-        <Typography variant='body2' color='textSecondary' component='p'>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi veritatis voluptate, iste voluptatem atque iure, repellendus voluptatibus asperiores, voluptates molestias vel non nemo optio. Maxime in quia ea incidunt est?.
-        </Typography>
-      </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label='Add to Cart' className={classes.btns}>
           <AddShoppingCartRoundedIcon />
@@ -54,7 +49,20 @@ export default function Product() {
         <IconButton aria-label='Add to Favorites' className={classes.btns}>
           <FavoriteBorderRoundedIcon />
         </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {[classes.expandOpen]: expanded,})}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label='Show more'
+        >
+          <ExpandMoreRoundedIcon />
+        </IconButton>
       </CardActions>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
+        <CardContent>
+          <Typography>{description}</Typography>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 }
@@ -72,5 +80,15 @@ const useStyles = makeStyles((theme) => ({
   },
   btns: {
     color: '#7BC74D',
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
   }
 }));
