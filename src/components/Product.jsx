@@ -48,10 +48,10 @@ export default function Product() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='Add to Cart'>
+        <IconButton aria-label='Add to Cart' className={classes.btns}>
           <AddShoppingCartRoundedIcon />
         </IconButton>
-        <IconButton aria-label='Add to Favorites'>
+        <IconButton aria-label='Add to Favorites' className={classes.btns}>
           <FavoriteBorderRoundedIcon />
         </IconButton>
         <IconButton
@@ -86,6 +86,9 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: '60%',
+  },
+  btns: {
+    color: '#7BC74D',
   },
   expand: {
     transform: 'rotate(0deg)',
