@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
-import Product from './Product';
+import CartProduct from './CartProduct';
 import products from '../product-data';
 
 const ShoppingPage = () => {
@@ -14,7 +14,7 @@ const ShoppingPage = () => {
       <React.Fragment>
         {products.map((item) => (
           <Grid item xs={12} sm={8} md={6} lg={4}>
-            <Product key={item.id} product={item} />
+            <CartProduct key={item.id} product={item} />
           </Grid>
         ))}
       </React.Fragment>
