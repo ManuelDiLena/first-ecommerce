@@ -9,9 +9,18 @@ import Typography from '@material-ui/core/Typography';
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import accounting from 'accounting';
+import { actionTypes } from '../reducer';
+import { useStateValue } from '../StateProvider';
 
 export default function CartProduct({ product: {id, name, brand, image, price, description} }) {
   const classes = useStyles();
+  const [{cart}, dispatch] = useStateValue();
+
+  // Function to delete product from the cart
+  const removeItem = () => dispatch({
+    type: actionTypes.REMOVE_ITEM,
+    id: id,
+  })
 
   return (
     <Card className={classes.root}>
@@ -37,7 +46,11 @@ export default function CartProduct({ product: {id, name, brand, image, price, d
         <IconButton aria-label='Add to Favorites' className={classes.btns}>
           <FavoriteBorderRoundedIcon />
         </IconButton>
-        <IconButton aria-label='Delete Product' className={classes.btns}>
+        <IconButton 
+          aria-label='Delete Product' 
+          className={classes.btns}
+          onClick={removeItem}
+        >
           <DeleteOutlineRoundedIcon />
         </IconButton>
       </CardActions>
