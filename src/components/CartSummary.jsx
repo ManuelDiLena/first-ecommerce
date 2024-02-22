@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#7BC74D',
     color: '#222831',
     fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: '#598f38',
+    }
   }
 }));
 
