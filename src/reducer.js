@@ -7,9 +7,14 @@ export const actionTypes = {
   REMOVE_ITEM: 'REMOVE_ITEM',
 }
 
-const reducer = (state, action) => {
+export const getCartTotal = (cart) => {
+  const totalPrice = cart?.reduce((acc, item) => acc + item.price, 0)
+  return totalPrice
+}
+
+function reducer(state, action) {
   console.log(action)
-  switch(action.type) {
+  switch (action.type) {
     case 'ADD_TO_CART':
       return {
         ...state,

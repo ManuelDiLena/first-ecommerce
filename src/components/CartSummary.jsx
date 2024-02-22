@@ -2,14 +2,17 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import accounting from 'accounting';
 import { Button } from '@material-ui/core';
+import { getCartTotal } from '../reducer';
+import { useStateValue } from '../StateProvider';
 
 const CartSummary = () => {
   const classes = useStyles();
+  const [{cart}, dispatch] = useStateValue();
 
   return (
     <div className={classes.root}>
-      <h5>Total Items: 3</h5>
-      <h5>{accounting.formatMoney(3000)}</h5>
+      <h5>Total Items: {cart?.length}</h5>
+      <h5>{accounting.formatMoney(getCartTotal(cart))}</h5>
       <Button className={classes.btn} variant='contained'>
         Check Out
       </Button>
