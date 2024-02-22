@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import CartProduct from './CartProduct';
+import CartSummary from './CartSummary';
 import products from '../product-data';
 
 const ShoppingPage = () => {
@@ -25,7 +26,7 @@ const ShoppingPage = () => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography align='center' gutterBottom variant='h4'>
+          <Typography align='center' variant='h4'>
             Shopping Cart
           </Typography>
         </Grid>
@@ -34,7 +35,7 @@ const ShoppingPage = () => {
         </Grid>
         <Grid item xs={12} sm={4} md={3}>
           <Typography align='center' gutterBottom variant='h4'>
-            Total
+            <CartSummary />
           </Typography>
         </Grid>
       </Grid>
