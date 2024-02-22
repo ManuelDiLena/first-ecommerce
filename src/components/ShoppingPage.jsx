@@ -4,16 +4,17 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import CartProduct from './CartProduct';
 import CartSummary from './CartSummary';
-import products from '../product-data';
+import { useStateValue } from '../StateProvider';
 
 const ShoppingPage = () => {
   const classes = useStyles();
+  const [{cart}, dispatch] = useStateValue();
 
   // Function to get each product from the cart and display them
   function FromRow() {
     return (
       <React.Fragment>
-        {products.map((item) => (
+        {cart?.map((item) => (
           <Grid item xs={12} sm={8} md={6} lg={4}>
             <CartProduct key={item.id} product={item} />
           </Grid>

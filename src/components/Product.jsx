@@ -13,14 +13,32 @@ import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounde
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import accounting from 'accounting';
+import { actionTypes } from '../reducer';
+import { useStateValue } from '../StateProvider';
 
 export default function Product({ product: {id, name, brand, image, price, description} }) {
   const classes = useStyles();
+  const [{cart}, dispatch] = useStateValue();
   const [expanded, setExpanded] = useState(false);
 
   // Function to expand the card and show the product info
   const handleExpandClick = () => {
     setExpanded(!expanded)
+  }
+
+  // Function to add product to cart
+  const addToCart = () => {
+    dispatch({
+      type: actionTypes.ADD_TO_CART,
+      item: {
+        id,
+        name,
+        brand,
+        image,
+        price,
+        description,
+      }
+    })
   }
 
   return (
@@ -44,7 +62,11 @@ export default function Product({ product: {id, name, brand, image, price, descr
         title={name}
       />
       <CardActions disableSpacing>
-        <IconButton aria-label='Add to Cart' className={classes.btns}>
+        <IconButton 
+          aria-label='Add to Cart' 
+          className={classes.btns}
+          onClick={addToCart}
+        >
           <AddShoppingCartRoundedIcon />
         </IconButton>
         <IconButton aria-label='Add to Favorites' className={classes.btns}>
