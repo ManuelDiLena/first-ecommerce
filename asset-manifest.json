@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/first-ecommerce/static/css/main.f07d6758.css",
+    "main.js": "/first-ecommerce/static/js/main.6e6f190e.js",
+    "static/media/logo.png": "/first-ecommerce/static/media/logo.5393cb152c6bdcd043ae.png",
+    "index.html": "/first-ecommerce/index.html",
+    "main.f07d6758.css.map": "/first-ecommerce/static/css/main.f07d6758.css.map",
+    "main.6e6f190e.js.map": "/first-ecommerce/static/js/main.6e6f190e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f07d6758.css",
+    "static/js/main.6e6f190e.js"
+  ]
+}
