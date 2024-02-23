@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link as RouteLink, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
 
 function Copyright() {
   return (
@@ -29,6 +30,22 @@ function Copyright() {
 
 export default function SignUp() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  // Function to register for the first time in the app
+  const register = (e) => {
+    e.preventDefault()
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((auth) => {
+          console.log(auth)
+          if (auth) {
+            navigate('/')
+          }
+        })
+        .catch(err => alert(err.message))
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -42,31 +59,10 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete='fname'
-                name='firstName'
-                variant='outlined'
-                required
-                fullWidth
-                id='firstName'
-                label='First Name'
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField 
-                variant='outlined'
-                required
-                fullWidth
-                id='lastName'
-                label='Last Name'
-                name='lastName'
-                autoComplete='lname'
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 variant='outlined'
                 required
                 fullWidth
@@ -78,6 +74,8 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 variant='outlined'
                 required
                 fullWidth
@@ -100,6 +98,7 @@ export default function SignUp() {
             fullWidth
             variant='contained'
             className={classes.submit}
+            onClick={register}
           >
             Sign Up
           </Button>
