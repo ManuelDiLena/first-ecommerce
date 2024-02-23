@@ -1,10 +1,13 @@
 export const initialState = {
-  cart: []
+  cart: [],
+  user: null,
 }
 
 export const actionTypes = {
   ADD_TO_CART: 'ADD_TO_CART',
   REMOVE_ITEM: 'REMOVE_ITEM',
+  SET_USER: 'SET_USER',
+  EMPTY_CART: 'EMPTY_CART'
 }
 
 // Function to add the prices of the products
@@ -33,6 +36,16 @@ function reducer(state, action) {
       return {
         ...state,
         cart: newCart
+      }
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.user
+      }
+    case 'EMPTY_CART':
+      return {
+        ...state,
+        cart: action.cart
       }
     default: return state
   }
