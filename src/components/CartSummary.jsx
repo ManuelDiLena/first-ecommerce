@@ -4,6 +4,7 @@ import accounting from 'accounting';
 import { Button } from '@material-ui/core';
 import { getCartTotal } from '../reducer';
 import { useStateValue } from '../StateProvider';
+import { Link } from 'react-router-dom';
 
 const CartSummary = () => {
   const classes = useStyles();
@@ -13,9 +14,11 @@ const CartSummary = () => {
     <div className={classes.root}>
       <h5>Total Items: {cart?.length}</h5>
       <h5>{accounting.formatMoney(getCartTotal(cart))}</h5>
-      <Button className={classes.btn} variant='contained'>
-        Check Out
-      </Button>
+      <Link to={`/checkout`}>
+        <Button className={classes.btn} variant='contained'>
+          Check Out
+        </Button>
+      </Link>
     </div>
   );
 }

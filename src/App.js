@@ -5,6 +5,7 @@ import ProductGrid from './components/ProductGrid';
 import ShoppingPage from './components/ShoppingPage';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import Checkout from './components/CheckoutForm/Checkout';
 import { auth } from './firebase';
 import { actionTypes } from './reducer';
 import { useStateValue } from './StateProvider';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/cart' element={<ShoppingPage />} />
+          <Route path='/checkout' element={<Checkout/>} />
           <Route exact path='/' element={<ProductGrid />} />
         </Routes>
       </BrowserRouter>
