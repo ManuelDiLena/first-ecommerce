@@ -7,6 +7,7 @@ export const actionTypes = {
   REMOVE_ITEM: 'REMOVE_ITEM',
 }
 
+// Function to add the prices of the products
 export const getCartTotal = (cart) => {
   const totalPrice = cart?.reduce((acc, item) => acc + item.price, 0)
   return totalPrice

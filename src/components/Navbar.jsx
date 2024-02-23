@@ -36,9 +36,11 @@ export default function Navbar() {
                 </Badge>
               </IconButton>
             </Link>
-            <Button variant='outlined' className={classes.btnLog}>
-              <strong>Sign In</strong>
-            </Button>
+            <Link to={`/signin`}>
+              <Button variant='outlined' className={classes.btnLog}>
+                <strong>Sign In</strong>
+              </Button>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
